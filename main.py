@@ -1,5 +1,10 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+from collections import deque
+
+
+from bfs import bfs
+from dfs import dfs
 
 def main():
     G = nx.Graph()
@@ -42,6 +47,11 @@ def main():
     print("Ступені вершин:")
     for node, degree in G.degree():
         print(f"{node}: {degree}")
+
+    print("DFS:")
+    dfs(G, 'Home')
+    print("\nBFS:")
+    bfs(G, deque(["Home"]))
 
     nx.draw(G, with_labels=True)
     plt.show()
