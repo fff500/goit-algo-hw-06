@@ -5,6 +5,7 @@ from collections import deque
 
 from bfs import bfs
 from dfs import dfs
+from dijkstra import dijkstra
 
 def main():
     G = nx.Graph()
@@ -53,7 +54,13 @@ def main():
     print("\nBFS:")
     bfs(G, deque(["Home"]))
 
-    nx.draw(G, with_labels=True)
+    print("\nDijkstra:")
+    print(dijkstra(G, 'Home'))
+
+    pos = nx.spring_layout(G, seed=42)
+    labels = nx.get_edge_attributes(G, 'weight')
+    nx.draw(G, pos, with_labels=True)
+    nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
     plt.show()
 
 if __name__ == "__main__":
